@@ -1,8 +1,9 @@
+// import models
 const { User, Thought } = require('../models');
 
 const thoughtController = {
     // get all pizzas
-    getAllThought(req, res) {
+    getAllThoughts(req, res) {
         Thought.find({})
         //.select('-__v')
         //.sort({ _id: -1 })

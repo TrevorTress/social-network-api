@@ -3,23 +3,19 @@ const { Schema, model, Types } = require('mongoose')
 const UserSchema = new Schema(
     {
         username: {
-            type: String
+            type: String,
             // Unique
-            // Required
-            // Trimmed
+            required: true,
+            trim: true
         },
         email: {
-            type: String
+            type: String,
             // Unique
-            // Required
+            required: true,
             // Matches valid email
         },
-        thoughts: {
-            type: []
-        },
-        friends: {
-            type: []
-        }
+        thoughts: [],
+        friends: []
     },
     {
         toJSON: {

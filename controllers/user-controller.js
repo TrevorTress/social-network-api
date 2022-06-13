@@ -1,9 +1,8 @@
 const { User, Thought } = require('../models');
-const { populate } = require('../models/User');
 
 const userController = {
     // get all users
-    getAllUser(req, res) {
+    getAllUsers(req, res) {
         User.find({})
         //.select('-__v')
         //.sort({ _id: -1 })
@@ -43,7 +42,7 @@ const userController = {
 
     // update User by id
     updateUser({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(dbUserData => {
             if (!dbUserData) {
                 res.status(404).json({ message: 'No User found with this id!' });

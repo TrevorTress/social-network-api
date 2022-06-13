@@ -8,12 +8,12 @@ const ReactionSchema = new Schema(
         },
         reactionBody: {
             type: String,
-            // required
+            required: true,
             // 280 char max
         },
         username: {
             type: String,
-            // required
+            required: true,
         },
         createdAt: {
             type: Date,
@@ -34,7 +34,7 @@ const ThoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
-            // required
+            required: true,
             // between 1 and 280 chars
         },
         createdAt: {
@@ -44,7 +44,7 @@ const ThoughtSchema = new Schema(
         },
         username: {
             type: String,
-            // required
+            required: true,
         },
         reactions: {
             // Array of nested documents created with the reactionSchema

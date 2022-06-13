@@ -18,7 +18,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/social-ne
 // Use this to log mongo queries being executed!
 mongoose.set('debug', true);
 
+app.use(require('./routes'));
+
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+
+/* TO-DO:
+- CONTROLLERS: need to add/remove friends and reactions
+- MODELS: need to finish models w friends and reactions
+- ROUTES: need to add friends/reactions routes
+*/
+
+
+
 
 // GIVEN a social network API
 // WHEN I enter the command to invoke the application
