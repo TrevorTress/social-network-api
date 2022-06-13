@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/social-ne
   useUnifiedTopology: true
 });
 
-// Use this to log mongo queries being executed!
+// log mongo queries being executed
 mongoose.set('debug', true);
 
 app.use(require('./routes'));
@@ -25,7 +25,7 @@ app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 /* TO-DO:
 - CONTROLLERS: need to add/remove friends and reactions
 - MODELS: need to finish models w friends and reactions
-- ROUTES: need to add friends/reactions routes
+- ROUTES: DONE
 */
 
 
