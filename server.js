@@ -23,9 +23,8 @@ app.use(require('./routes'));
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 
 /* TO-DO:
-- CONTROLLERS: need to add/remove friends and reactions
+- CONTROLLERS: need functions to add/remove friends to users and reactions to thoughts
 - MODELS: need to finish models w friends and reactions
-- ROUTES: DONE
 */
 
 
