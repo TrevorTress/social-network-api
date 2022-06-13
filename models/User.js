@@ -15,7 +15,12 @@ const UserSchema = new Schema(
             // Matches valid email
         },
         // array of _id values referencing the Thought model
-        thoughts: [],
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
+            }
+        ],
         // Array of _id values referencing the User model (self-reference)
         friends: []
     },
