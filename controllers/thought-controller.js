@@ -2,7 +2,7 @@
 const { User, Thought } = require('../models');
 
 const thoughtController = {
-    // get all pizzas
+    // get all thoughts
     getAllThoughts(req, res) {
         Thought.find({})
         //.select('-__v')

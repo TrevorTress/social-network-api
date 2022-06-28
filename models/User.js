@@ -4,15 +4,15 @@ const UserSchema = new Schema(
     {
         username: {
             type: String,
-            // Unique
+            unique: true,
             required: true,
             trim: true
         },
         email: {
             type: String,
-            // Unique
+            unique: true,
             required: true,
-            // Matches valid email
+            match: [/.+@.+\..+/, 'Must match an email address!']
         },
         // array of _id values referencing the Thought model
         thoughts: [
@@ -21,8 +21,13 @@ const UserSchema = new Schema(
                 ref: 'Thought'
             }
         ],
-        // Array of _id values referencing the User model (self-reference)
-        friends: []
+        // array of _id values referencing the User model (self-reference)
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ]
     },
     {
         toJSON: {

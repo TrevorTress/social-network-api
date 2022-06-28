@@ -4,8 +4,13 @@ const userController = {
     // get all users
     getAllUsers(req, res) {
         User.find({})
-        //.select('-__v')
-        //.sort({ _id: -1 })
+        .populate({
+            path: 'friends',
+            path: 'thoughts',
+            select: '-__v',
+        })
+        .select('-__v')
+        .sort({ _id: -1 })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
@@ -16,21 +21,20 @@ const userController = {
     // get one User by id
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-        .populate({
-            // w friend and thought data
-        })
-          //.select('-__v')
-          .then(dbUserData => {
+        .select('-__v')
+        //.populate('friends')
+        //.populate('thoughts')
+        .then(dbUserData => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'No User found with this id!' });
-              return;
+                res.status(404).json({ message: 'No User found with this id!' });
+                return;
             }
             res.json(dbUserData);
-          })
-          .catch(err => {
+        })
+        .catch(err => {
             console.log(err);
             res.status(400).json(err);
-          });
+        });
     },
 
     // createUser
@@ -55,6 +59,7 @@ const userController = {
 
     // delete User
     deleteUser({ params }, res) {
+        console.log(params)
         User.findOneAndDelete({ _id: params.id })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -68,9 +73,10 @@ const userController = {
 
     // add friend
     addFriend({ params, body }, res) {
+        // add to set?????
         User.findOneAndUpdate(
-            { _id: params.userId },
-            { $push: { friends: body } },
+            { _id: params.id },
+            { $addToSet: { friends: body } },
             { new: true, runValidators: true }
         )
         .then(dbUserData => {
